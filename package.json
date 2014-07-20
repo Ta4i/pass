@@ -1,0 +1,34 @@
+{
+    "name": "Pass",
+    "version": "0.0.1",
+    "script": {
+        "test": "echo test",
+        "start": "node index.js",
+        "predeploy": "echo im about to deploy",
+        "postdeploy": "echo ive deployed",
+        "prepublish": "echo im prepublishing"
+    },
+    "dependencies": {
+        "ws" : "latest",
+        "express": "3.x",
+        "ejs" : "latest",
+        "mongoose": "3.8.x",
+        "chance": "0.5.x",
+        "express-session": "latest",
+        "jade": "latest",
+        "mongoose": "latest",
+        "connect-mongo": "latest",
+        "connect-flash": "latest",
+        "passport": "latest",
+        "passport-local": "latest",
+        "passport-facebook": "latest",
+        "passport-twitter": "latest",
+        "passport-github": "latest",
+        "passport-google-oauth": "latest",
+        "passport-linkedin": "latest",
+        "passport-local-mongoose": "latest",
+        "imager": "latest",
+        "async": "latest",
+        "forever": "latest"
+    }
+}
