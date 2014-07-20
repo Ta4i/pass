@@ -4,7 +4,7 @@ $(function(){
         this.id = '';
         this.kittyManager = kittyManager;
     };
-
+    
     WSRouter.prototype.onMessage = function(msg){
         var data    = JSON.parse(msg.data);
         var status  = data.type;
@@ -29,11 +29,13 @@ $(function(){
                     $kitty.addClass('anim');
                 },1);
                 
+                kittyManager.mew(data.id);
+                
                 setTimeout(function(){
                     $kitty.removeClass('now');
                     setTimeout(function(){
                         $kitty.removeClass('anim');
-                    },1000);
+                    },10);
                 },1000);
                 
                 break;
@@ -44,6 +46,8 @@ $(function(){
         _.extend(this, options);
         this.config = JSON.parse(options.config);
         this.options = options;
+        this.mewWav = new Audio("/audio/cat11.wav");
+
     }
     Kitty.prototype.render = function(){
         this.$name = $('<div class="name"></div>');
@@ -73,6 +77,11 @@ $(function(){
         this.$kittens = [];
         this.$room = $('<div id="room"></div>');
         $body.append(this.$room);
+    };
+    KittyManager.prototype.mew = function(kid){
+        this.kittens.filter(function(kitty){
+            return kitty._id+'' === kid+'';
+        })[0].mewWav.play();
     };
     KittyManager.prototype.set = function(kittens){
         var self = this;
