@@ -66,8 +66,8 @@ module.exports = function(app, db, passport, WebSocket){
 
                         function get_random_color() {
                             var h = rand(1, 360);
-                            var s = rand(0, 100);
-                            var l = rand(0, 100);
+                            var s = 73;
+                            var l = 50;
                             return 'hsl(' + h + ',' + s + '%,' + l + '%)';
                         }
                     })();

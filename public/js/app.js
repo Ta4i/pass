@@ -21,6 +21,21 @@ $(function(){
                 break;
             case 'mew':
                 console.log('Kitty say mew', data.id);
+                
+                var $kitty = $('#' + data.id + ' .mew');
+
+                $kitty.addClass('now');
+                setTimeout(function(){
+                    $kitty.addClass('anim');
+                },1);
+                
+                setTimeout(function(){
+                    $kitty.removeClass('now');
+                    setTimeout(function(){
+                        $kitty.removeClass('anim');
+                    },1000);
+                },1000);
+                
                 break;
         }
     };
@@ -31,7 +46,25 @@ $(function(){
         this.options = options;
     }
     Kitty.prototype.render = function(){
-        this.$el = $('<div class="kitty type_' + this.config.type + '">' + this.name + '</div>');
+        this.$name = $('<div class="name"></div>');
+        this.$mew  = $('<div class="mew">Mew</div>');
+        
+        this.$el = $('<div id="'+this._id+'" class="kitty type_' + this.config.type + '"></div>');
+        
+        this.$name.html(this.name);
+        
+        this.$el.append(this.$mew);
+        this.$el.append(this.$name);
+        this.$el.css({
+            'border-color' : this.config.hsl
+        });
+        this.$name.css({
+            'background-color' : this.config.hsl
+        });
+        this.$mew.css({
+            'background-color' : this.config.hsl
+        });
+        
         return this;
     };
 
@@ -95,7 +128,7 @@ $(function(){
     };
     AppController.prototype.render = function(){
         if(!this.$addButton || this.$addButton.length === 0){
-            this.$addButton = $('<button id="add">Add Kitty</button>');
+            this.$addButton = $('<button id="add">+</button>');
             $body.append(this.$addButton);
         }
     };
