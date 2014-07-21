@@ -33,7 +33,7 @@ module.exports = function(app, db, passport, WebSocket){
 
                     Kitty.find({owner: id}, function(error, kittens){
                         kittens.forEach(function(kitty){
-                            var time = Math.random() * 5 + 3;
+                            var time = Math.random() * 20 + 10;
                             intervals[kitty._id] = setInterval(function(){
                                 kitty.mew(ws);
                             }, time * 1000);
@@ -79,7 +79,7 @@ module.exports = function(app, db, passport, WebSocket){
                     newKitty.save(function(error, kitty){
                         response.kitty = kitty;
                         ws.send(JSON.stringify(response));
-                        var time = Math.random() * 5 + 3;
+                        var time = Math.random() * 20 + 10;
                         intervals[kitty._id] = setInterval(function(){
                             console.log('New kitty mew');
                             kitty.mew(ws);
